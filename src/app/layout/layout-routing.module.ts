@@ -5,7 +5,15 @@ import {RouterModule, Routes} from "@angular/router";
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './playlists/playlists.module#PlaylistsModule',
+    children: [
+      {
+        path: '', redirectTo: 'play-lists'
+      },
+      {
+        path: 'play-lists',
+        loadChildren: './playlists/playlists.module#PlaylistsModule',
+      }
+    ]
   }
 ];
 

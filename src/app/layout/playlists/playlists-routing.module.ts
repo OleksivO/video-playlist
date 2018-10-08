@@ -9,14 +9,11 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: '', redirectTo: 'play-lists'
-      },
-      {
-        path: 'play-lists',
+        path: '',
         component: PlaylistsComponent,
       },
       {
-        path: ':id/player',
+        path: ':id/play',
         component: PlaylistPlayerComponent
       }
     ]

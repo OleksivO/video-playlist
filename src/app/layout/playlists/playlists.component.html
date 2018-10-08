@@ -1,3 +1,13 @@
-<p>
-  playlist works!
-</p>
+<div class="row">
+  <div class="col-md-7 form-group">
+    <ul class="list-group">
+      <ng-container *ngFor="let item of p_items">
+        <app-playlist-item [p_item]="item"
+                           (edit)="onEdit($event)"></app-playlist-item>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="col-md-5 form-group">
+    <app-playlist-edit [p_selected]="p_edit"></app-playlist-edit>
+  </div>
+</div>

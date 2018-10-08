@@ -1,3 +1,9 @@
-<p>
-  playlist-item works!
-</p>
+<li class="list-group-item mb-1">
+  <h5>{{p_item.name}}</h5>
+  <div class="">
+     <button class="btn btn-dark btn-sm mr-1"
+             (click)="onEditClickHandler()">Edit</button>
+     <button class="btn btn-dark btn-sm"
+             [routerLink]="[p_item.id, 'play']">Play</button>
+  </div>
+</li>
