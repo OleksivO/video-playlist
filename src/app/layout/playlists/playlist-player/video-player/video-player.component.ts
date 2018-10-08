@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, ViewChild} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
@@ -10,7 +10,9 @@ export class VideoPlayerComponent implements OnChanges{
 
   constructor(private sanitizer: DomSanitizer) { }
 
-  @Input() sourceURLs:string;
+  @ViewChild('video') videoEl: ElementRef;
+
+  @Input() sourceURLs:string[];
 
   trustedURL;
 
@@ -30,6 +32,7 @@ export class VideoPlayerComponent implements OnChanges{
   }
 
   setTrustedUrl() {
-    this.trustedURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.sourceURLs[this.index])
+    this.trustedURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.sourceURLs[this.index]);
+    if(this.videoEl) this.videoEl.nativeElement.load();
   }
 }

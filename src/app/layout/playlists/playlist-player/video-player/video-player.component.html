@@ -1,7 +1,8 @@
 <div class="video-player-wrapper w-100 h-auto">
   <video controls
+         id="video"
          autoplay
-         loop
+         #video
          (ended)="onEnded()"
          *ngIf="sourceURLs">
     <source [src]="trustedURL" type="video/mp4">

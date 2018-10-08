@@ -38,7 +38,7 @@ export class PlaylistPlayerComponent implements OnInit {
   }
 
   onVideoSelect(event) {
-    this.videosUrls.length = 0;
+    this.videosUrls = [];
     this.videosUrls.push(event)
   }
 
