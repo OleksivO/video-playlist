@@ -1,10 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from "./core/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: './layout/layout.module#LayoutModule'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
