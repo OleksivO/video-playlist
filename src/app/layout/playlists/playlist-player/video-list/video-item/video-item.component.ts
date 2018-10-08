@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Video} from "../../../../../shared/models/video";
 
 @Component({
   selector: 'app-video-item',
@@ -6,7 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class VideoItemComponent{
 
-  @Input() video;
+  @Input() video: Video;
 
   @Output() selected: EventEmitter<string> = new EventEmitter<string>();
 

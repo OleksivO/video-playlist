@@ -2,17 +2,17 @@
   <div class="col-md-7 form-group">
     <h4>Your play-lists: </h4>
     <ul class="list-group"
-        *ngIf="p_items.length">
-      <ng-container *ngFor="let item of p_items">
-        <app-playlist-item [p_item]="item"
+        *ngIf="playlists.length">
+      <ng-container *ngFor="let item of playlists">
+        <app-playlist-item [playlist]="item"
                            (edit)="onEdit($event)"></app-playlist-item>
       </ng-container>
     </ul>
-    <p *ngIf="!p_items.length">
+    <p *ngIf="!playlists.length">
       There are no play-lists. Try to create a new one.
     </p>
   </div>
   <div class="col-md-5 form-group">
-    <app-playlist-edit [id_selected]="p_edit_id"></app-playlist-edit>
+    <app-playlist-edit [playlist_id_selected]="playlist_edit_id"></app-playlist-edit>
   </div>
 </div>

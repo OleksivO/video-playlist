@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../../../core/data.service";
 import {ActivatedRoute, Params} from "@angular/router";
+import {PlayList} from "../../../shared/models/play-list";
 
 @Component({
   selector: 'app-playlist-player',
@@ -8,7 +9,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 })
 export class PlaylistPlayerComponent implements OnInit {
 
-  playlist = {
+  playlist: PlayList = {
     name: '',
     videos: []
   };

@@ -1,19 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {PlayList} from "../../../../shared/models/play-list";
 
 @Component({
   selector: 'app-video-list',
   templateUrl: './video-list.component.html'
 })
-export class VideoListComponent implements OnInit {
+export class VideoListComponent {
 
-  @Input() playlist;
+  @Input() playlist: PlayList;
 
   @Output() selectedItem: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   onItemSelected(event){
     this.selectedItem.emit(event)

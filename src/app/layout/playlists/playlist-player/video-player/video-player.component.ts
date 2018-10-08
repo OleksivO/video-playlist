@@ -14,7 +14,7 @@ export class VideoPlayerComponent implements OnChanges{
 
   trustedURL;
 
-  index = 0;
+  index: number = 0;
 
   ngOnChanges(){
     this.setTrustedUrl()

@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-md-12 form-group">
     <h4 class="text-center">{{editMode ? 'Edit'+playlist.name : 'Create new play-list'}}</h4>
-    <button class="btn btn-success d-block" (click)="savePlaylist()">Save</button>
+    <button class="btn btn-success d-block"
+            (click)="savePlaylist()">{{editMode ? 'Save changes' : 'Create'}}</button>
   </div>
   <div class="col-md-12 form-group">
     <label for="playlist_name"
@@ -14,27 +15,6 @@
   </div>
   <div class="col-md-12 form-group">
     <label for="playlist_videos" class="font-weight-bold">Videos <small class="text-info">(click over video to remove)</small></label>
-    <div class="row mb-2">
-      <div class="col-md-12">
-        <input type="text"
-               class="form-control mb-1"
-               [(ngModel)]="video.title"
-               placeholder="Title"
-               title="Video title">
-        <input type="text"
-               class="form-control mb-1"
-               [(ngModel)]="video.author"
-               placeholder="Author"
-               title="Video author">
-        <input type="text"
-               class="form-control mb-1"
-               [(ngModel)]="video.link"
-               placeholder="Link"
-               title="Video link">
-        <button class="btn btn-sm btn-info float-right"
-                (click)="onAddVideo()">Add to playlist</button>
-      </div>
-    </div>
     <ul id="playlist_videos"
         *ngIf="playlist.videos.length"
         class="list-group">
@@ -49,5 +29,24 @@
        class="text-center">
       There are no videos. Try to add a new one.
     </p>
+  </div>
+  <div class="col-md-12 form-group">
+    <input type="text"
+           class="form-control mb-1"
+           [(ngModel)]="video.title"
+           placeholder="Title"
+           title="Video title">
+    <input type="text"
+           class="form-control mb-1"
+           [(ngModel)]="video.author"
+           placeholder="Author"
+           title="Video author">
+    <input type="text"
+           class="form-control mb-1"
+           [(ngModel)]="video.link"
+           placeholder="Link"
+           title="Video link">
+    <button class="btn btn-sm btn-info float-right"
+            (click)="onAddVideo()">Add to playlist</button>
   </div>
 </div>
