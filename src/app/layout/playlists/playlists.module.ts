@@ -8,6 +8,7 @@ import {VideoItemComponent} from "./playlist-player/video-list/video-item/video-
 import { PlaylistEditComponent } from './playlist-edit/playlist-edit.component';
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {VideoPlayerComponent} from "./playlist-player/video-player/video-player.component";
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     PlaylistsComponent,
     PlaylistPlayerComponent,
     VideoListComponent,
+    VideoPlayerComponent,
     VideoItemComponent,
     PlaylistEditComponent
   ]

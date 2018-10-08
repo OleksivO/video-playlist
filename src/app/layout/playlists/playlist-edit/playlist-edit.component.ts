@@ -9,70 +9,64 @@ import {DataService} from "../../../core/data.service";
 })
 export class PlaylistEditComponent implements OnChanges {
 
-  @Input() p_selected;
+  @Input() id_selected;
+
+  playlist = {
+    name: '',
+    videos: []
+  };
+
+  video = {
+    title: '',
+    author: '',
+    link: ''
+  };
 
   editMode = false;
 
-  p_form: FormGroup;
 
   constructor(private dataService: DataService) { }
 
   ngOnChanges() {
-    this.editMode = this.p_selected !== null;
-    this.initForm();
-    console.log('Detected changes');
+    this.editMode = this.id_selected !== null;
+    if(this.editMode){
+      this.getPlaylist();
+    }
   }
 
-  initForm(){
-    let name = null;
-    let videos = new FormArray([]);
-    if(this.editMode){
-      name = this.p_selected.name;
-      if(this.p_selected.videos.length){
-        this.p_selected.videos.forEach(video => {
-          videos.push(new FormGroup({
-            'title': new FormControl(video.title, Validators.required),
-            'author': new FormControl(video.author, Validators.required),
-            'link': new FormControl(video.link, Validators.required),
-          }))
-        })
+  getPlaylist(){
+    this.dataService.getPlaylist(this.id_selected).subscribe(
+      response => {
+        this.playlist = response;
       }
-    }
-
-    this.p_form = new FormGroup({
-      name: new FormControl(name, Validators.required),
-      videos: videos
-    })
-
+    )
   }
 
   onAddVideo(){
-    (<FormArray>this.p_form.get('videos')).push(
-      new FormGroup({
-        'name': new FormControl(null, Validators.required),
-        'author': new FormControl(null, Validators.required),
-        'link': new FormControl(null, Validators.required)
-      })
-    );
+    this.playlist.videos.unshift({...this.video});
+    this.video = {...{}, ...{title: '', author: '', link: ''}}
   }
 
-  onRemoveVideo(position){
-    (<FormArray>this.p_form.get('videos')).removeAt(position);
+  onRemoveVideo(i){
+    this.playlist.videos.splice(i,1)
   }
 
-  getControls() {
-    return (<FormArray>this.p_form.get('videos')).controls;
-  }
-
-  onSubmit(){
-    console.log('Form', this.p_form.value);
+  savePlaylist(){
     if(this.editMode){
-      this.dataService.updatePlayList(this.p_form.value);
+      this.dataService.updatePlayList(this.playlist).subscribe(
+        () => this.reset()
+      )
     }else{
-      this.dataService.createPlayLists(this.p_form.value)
+      this.dataService.createPlayLists(this.playlist).subscribe(
+        () => this.reset()
+      )
     }
-    this.p_form.markAsPristine();
   }
 
+  reset(){
+    this.editMode = false;
+    this.video = {...{}, ...{title: '', author: '', link: ''}};
+    this.playlist = {...{}, ...{name: '', videos: []}}
+  }
 
 }

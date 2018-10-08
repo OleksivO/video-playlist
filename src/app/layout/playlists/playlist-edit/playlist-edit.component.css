@@ -1,8 +1,3 @@
-a.not-linked {
+.cursor-pointer {
   cursor: pointer;
-  color: #236dec;
-}
-
-a.not-linked:hover {
-  color: #1127ec;
 }

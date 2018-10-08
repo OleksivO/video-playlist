@@ -10,7 +10,7 @@ export class PlaylistsComponent implements OnInit {
 
   p_items = [];
 
-  p_edit = null;
+  p_edit_id = null;
 
   constructor(private dataService: DataService) { }
 
@@ -22,8 +22,7 @@ export class PlaylistsComponent implements OnInit {
 
   onEdit(event){
     console.log('Event', event);
-    this.p_edit = this.p_items.find(item => item.id === event);
-    console.log('Edit', this.p_edit);
+    this.p_edit_id = event;
   }
 
 }
