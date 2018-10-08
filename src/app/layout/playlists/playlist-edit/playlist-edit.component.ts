@@ -1,5 +1,4 @@
 import {Component, Input, OnChanges} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DataService} from "../../../core/data.service";
 
 @Component({
@@ -19,7 +18,7 @@ export class PlaylistEditComponent implements OnChanges {
   video = {
     title: '',
     author: '',
-    link: ''
+    link: 'http://techslides.com/demos/sample-videos/small.webm'
   };
 
   editMode = false;
@@ -44,7 +43,7 @@ export class PlaylistEditComponent implements OnChanges {
 
   onAddVideo(){
     this.playlist.videos.unshift({...this.video});
-    this.video = {...{}, ...{title: '', author: '', link: ''}}
+    this.video = {...{}, ...{title: '', author: '', link: ''}};
   }
 
   onRemoveVideo(i){

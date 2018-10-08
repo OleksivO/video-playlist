@@ -3,8 +3,7 @@ import {DataService} from "../../core/data.service";
 
 @Component({
   selector: 'app-playlists',
-  templateUrl: './playlists.component.html',
-  styleUrls: ['./playlists.component.css']
+  templateUrl: './playlists.component.html'
 })
 export class PlaylistsComponent implements OnInit {
 

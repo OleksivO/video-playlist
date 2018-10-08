@@ -1,15 +1,44 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from "../../../core/data.service";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-playlist-player',
-  templateUrl: './playlist-player.component.html',
-  styleUrls: ['./playlist-player.component.css']
+  templateUrl: './playlist-player.component.html'
 })
 export class PlaylistPlayerComponent implements OnInit {
 
-  constructor() { }
+  playlist = {
+    name: '',
+    videos: []
+  };
+
+  playlistId: string;
+
+  videosUrls: string[] = [];
+
+  constructor(private dataService: DataService, private route: ActivatedRoute) {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.playlistId = params.id;
+      }
+    )
+  }
 
   ngOnInit() {
+    this.dataService.getPlaylist(this.playlistId).subscribe(
+      response => {
+        this.playlist = response;
+        this.playlist.videos.forEach(video => {
+          this.videosUrls.push(video.link)
+        })
+      }
+    )
+  }
+
+  onVideoSelect(event) {
+    this.videosUrls.length = 0;
+    this.videosUrls.push(event)
   }
 
 }

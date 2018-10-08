@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-md-8 form-group">
-    <app-video-player></app-video-player>
+    <app-video-player [sourceURLs]="videosUrls"></app-video-player>
   </div>
   <div class="col-md-4 form-group">
-    <app-video-list></app-video-list>
+    <app-video-list [playlist]="playlist"
+                    (selectedItem)="onVideoSelect($event)"></app-video-list>
   </div>
 </div>
