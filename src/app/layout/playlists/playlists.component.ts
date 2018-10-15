@@ -24,4 +24,8 @@ export class PlaylistsComponent implements OnInit {
     this.playlist_edit_id = event;
   }
 
+  onSubmitHandler(){
+    this.playlist_edit_id = null;
+  }
+
 }

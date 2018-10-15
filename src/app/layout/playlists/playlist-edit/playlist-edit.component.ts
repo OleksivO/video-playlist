@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {DataService} from "../../../core/data.service";
 import {PlayList} from "../../../shared/models/play-list";
 import {Video} from "../../../shared/models/video";
@@ -11,6 +11,8 @@ import {Video} from "../../../shared/models/video";
 export class PlaylistEditComponent implements OnChanges {
 
   @Input() playlist_id_selected;
+
+  @Output() sumbitted = new EventEmitter();
 
   playlist: PlayList = {
     name: '',
@@ -29,6 +31,7 @@ export class PlaylistEditComponent implements OnChanges {
   constructor(private dataService: DataService) { }
 
   ngOnChanges() {
+    this.reset();
     this.editMode = this.playlist_id_selected !== null;
     if(this.editMode){
       this.getPlaylist();
@@ -38,7 +41,7 @@ export class PlaylistEditComponent implements OnChanges {
   getPlaylist(){
     this.dataService.getPlaylist(this.playlist_id_selected).subscribe(
       response => {
-        this.playlist = response;
+        this.playlist = {...response};
       }
     )
   }
@@ -62,6 +65,7 @@ export class PlaylistEditComponent implements OnChanges {
         () => this.reset()
       )
     }
+    this.sumbitted.emit()
   }
 
   reset(){
